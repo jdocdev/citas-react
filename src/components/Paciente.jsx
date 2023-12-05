@@ -1,6 +1,14 @@
-function Paciente({paciente, setPaciente}) {
+function Paciente({ paciente, setPaciente, eliminarPaciente }) {
 
-    const {nombre,propietario,email,fecha,sintomas} = paciente;
+    const { nombre, propietario, email, fecha, sintomas, id } = paciente;
+
+    const handleEliminar = () => {
+        const respuesta = confirm("Acción irreversible ¿Eliminar usuario?");
+
+        if(respuesta){
+            eliminarPaciente(id);
+        }
+    }
 
     return (
         <div className="m-5 bg-white shadow-md py-10 px-5 rounded-md">
@@ -21,16 +29,17 @@ function Paciente({paciente, setPaciente}) {
             </p>
             <div className="flex justify-between mt-10">
                 <button
-                type="button" 
-                className="py-2 px-10 bg-cyan-600 hover:bg-cyan-700 text-white font-bold uppercase rounded-md"
-                onClick={()=>setPaciente(paciente)}
+                    type="button"
+                    className="py-2 px-10 bg-cyan-600 hover:bg-cyan-700 text-white font-bold uppercase rounded-md"
+                    onClick={() => setPaciente(paciente)}
                 >Editar
-                </button> 
+                </button>
                 <button
-                type="button" 
-                className="py-2 px-10 bg-red-500 hover:bg-red-600 text-white font-bold uppercase rounded-md"
+                    type="button"
+                    className="py-2 px-10 bg-red-500 hover:bg-red-600 text-white font-bold uppercase rounded-md"
+                    onClick={handleEliminar}
                 >Eliminar
-                </button> 
+                </button>
             </div>
         </div>
     )
